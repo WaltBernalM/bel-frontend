@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-
 <div id="sign-page">
-  <app-login-form></app-login-form>
-  <app-signup-form></app-signup-form>
+  <div *ngIf="selectedOption === 'login'">
+    <app-login-form></app-login-form>
+  </div>
+  <div *ngIf="selectedOption === 'signup'">
+    <app-signup-form></app-signup-form>
+  </div>
 </div>

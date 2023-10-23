@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,8 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  @Output() optionSelected = new EventEmitter<string>();
+
+  selectOption(option: string): void { 
+    this.optionSelected.emit(option);
+  }
+
   isLogin: boolean = true;
   isSignup: boolean = false;
+  
   public updateSelection(event: Event, option: string): void {
     event.preventDefault();
     if (option === 'login') {
@@ -17,5 +24,6 @@ export class NavbarComponent {
       this.isLogin = false;
       this.isSignup = true;
     }
+    this.selectOption(option);
   }
 }
