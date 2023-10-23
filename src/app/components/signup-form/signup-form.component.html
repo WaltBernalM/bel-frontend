@@ -1,0 +1,62 @@
+<div id="signup-form">
+  <div class="container">
+    <div>
+      <h4>Crear cuenta</h4>
+      <!-- Form works weird with  form tag and $event -->
+      <form (ngSubmit)="onSubmit($event)" id="form">
+        <div class="form-group">
+          <label for="email">Correo electronico</label>
+          <input type="text" id="email"
+          class="form-control"
+          required
+          placeholder="usuario@correo.com.mx"
+          [(ngModel)]="user.email" name="email"
+          [ngClass]="{'alert-danger': !validEmail}"
+          (input)="validateEmail()"
+          >
+        </div>
+        <div class="passwords">
+          <div class="password-input">
+            <label for="email">Contrasena</label>
+            <input type="password" class="form-control" id="password"
+            required
+            placeholder="******************"
+            [(ngModel)]="user.password" name="password-1"
+            [ngClass]="{'alert-danger': !validPassword}"
+            (input)="validatePassword()"
+            >
+          </div>
+          <div class="password-input">
+            <label for="email">Confirmar contrasena</label>
+            <input type="password" class="form-control" id="passwordValidation"
+            required
+            placeholder="******************"
+            [(ngModel)]="user.passwordValidation" name="passwordValidation"
+            [ngClass]="{'alert-danger': !validPassword}"
+            (input)="validatePassword()"
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fullName">Nombre completo</label>
+          <input type="text" id="full-name"
+          class="form-control"
+          required
+          placeholder="Angel Damian Martinez Delfin"
+          [(ngModel)]="user.fullName" name="fullName"
+          [ngClass]="{'alert-danger': !validFullName}"
+          (input)="validateEmail()"
+          >
+        </div>
+        <button 
+          id="submit-button"  
+          onclick=""
+          class="btn btn-success" 
+          [disabled]="!validEmail && !validPassword && !validFullName"
+        >
+          Registrarme
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

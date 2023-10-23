@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<nav>
+  <a href="/login" [ngClass]="{'selected': isLogin}" (click)="updateSelection($event,'login')">
+    Log in
+  </a>
+  <a href="/signup" [ngClass]="{'selected': isSignup}" (click)="updateSelection($event,'signup')">
+    Sign up
+  </a>
+</nav>
