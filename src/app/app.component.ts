@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +7,16 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class AppComponent {
   title = 'bwl-frontend';
-  selectedOption: string = 'login';
-  updateSelectedOption(option: string): void { 
-    this.selectedOption = option;
+  isLoginComponentVisible: boolean = true;
+  
+  toggleComponentVisibility(option: string): void {
+    if (option === 'login') { 
+      this.isLoginComponentVisible = true;
+    } else {
+      this.isLoginComponentVisible = false;
+    }
+  }
+  print(thing: any): void {
+    console.log(thing)
   }
 }

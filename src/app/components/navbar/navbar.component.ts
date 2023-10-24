@@ -1,26 +1,28 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  @Output() optionSelected = new EventEmitter<string>();
+  @Input() isLoginComponentVisible!: boolean;
+  @Output() optionSelectedEvent = new EventEmitter<string>();
 
-  selectOption(option: string): void { 
-    this.optionSelected.emit(option);
+  public isLogin: boolean = true;
+  public isSignup: boolean = false;
+
+  private selectOption(option: string): void {
+    this.optionSelectedEvent.emit(String(option));
   }
 
-  isLogin: boolean = true;
-  isSignup: boolean = false;
-  
   public updateSelection(event: Event, option: string): void {
     event.preventDefault();
+    this.selectOption(option);
     if (option === 'login') {
       this.isLogin = true;
       this.isSignup = false;
-    } else if (option === 'signup') { 
+    } else if (option === 'signup') {
       this.isLogin = false;
       this.isSignup = true;
     }
