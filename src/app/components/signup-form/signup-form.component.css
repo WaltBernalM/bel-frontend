@@ -39,7 +39,7 @@ input{
   margin-top: 20px;
 }
 .form-group label {
-  font-size: 8px;
+  font-size: 10px;
   color: gray;
 }
 
@@ -60,7 +60,7 @@ input{
 }
 
 .passwords label {
-  font-size: 8px;
+  font-size: 10px;
   color: gray;
 }
 

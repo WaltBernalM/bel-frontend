@@ -18,7 +18,8 @@
         <div class="passwords">
           <div class="password-input">
             <label for="email">Contrasena</label>
-            <input type="password" class="form-control" id="password"
+            <input class="form-control" id="password"
+            type="password"
             required
             placeholder="******************"
             [(ngModel)]="user.password" name="password-1"
@@ -28,7 +29,8 @@
           </div>
           <div class="password-input">
             <label for="email">Confirmar contrasena</label>
-            <input type="password" class="form-control" id="passwordValidation"
+            <input class="form-control" id="passwordValidation"
+            type="password"
             required
             placeholder="******************"
             [(ngModel)]="user.passwordValidation" name="passwordValidation"
@@ -45,7 +47,7 @@
           placeholder="Angel Damian Martinez Delfin"
           [(ngModel)]="user.fullName" name="fullName"
           [ngClass]="{'alert-danger': !validFullName}"
-          (input)="validateEmail()"
+          (input)="validateFullName()"
           >
         </div>
         <button 

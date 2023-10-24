@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -8,9 +8,9 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { SignPageComponent } from './pages/sign-page/sign-page.component';
 import { SignupFormComponent } from './components/signup-form/signup-form.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  imports: [BrowserModule, CommonModule, FormsModule],
   declarations: [
     AppComponent,
     LoginFormComponent,
@@ -18,7 +18,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     SignupFormComponent,
     NavbarComponent,
   ],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    FormsModule,
+    AppRoutingModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

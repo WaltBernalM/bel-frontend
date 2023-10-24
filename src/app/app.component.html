@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<!-- {{title}} -->
+<div class="content" style="display: none;">
+  <span>{{ 'bwl-frontend app is running!' }}</span>
+</div>
 <div>
+  <!-- <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/heroes">Heroes</a> -->
   <app-navbar 
   [isLoginComponentVisible]="isLoginComponentVisible"
   (optionSelectedEvent)="toggleComponentVisibility($event)"
@@ -10,3 +14,5 @@
   [isLoginComponentVisible]="isLoginComponentVisible"
   ></app-sign-page>
 </div>
+
+<!-- <router-outlet></router-outlet> -->
