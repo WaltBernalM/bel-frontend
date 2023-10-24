@@ -12,7 +12,7 @@ export class NavbarComponent {
   public isLogin: boolean = true;
   public isSignup: boolean = false;
 
-  private selectOption(option: string): void {
+  public selectOption(option: string): void {
     this.optionSelectedEvent.emit(String(option));
   }
 

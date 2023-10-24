@@ -10,13 +10,13 @@ export class AppComponent {
   isLoginComponentVisible: boolean = true;
   
   toggleComponentVisibility(option: string): void {
-    if (option === 'login') { 
+    this.evaluateOption(option);
+  }
+  private evaluateOption(option: string): void {
+    if (option === 'login') {
       this.isLoginComponentVisible = true;
     } else {
       this.isLoginComponentVisible = false;
     }
-  }
-  print(thing: any): void {
-    console.log(thing)
   }
 }

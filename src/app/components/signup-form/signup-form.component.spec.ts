@@ -23,4 +23,20 @@ describe('SignupFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should evaluate to truthy', () => {
+    const mockEvent = new Event('');
+    component.onSubmit(mockEvent);
+    component.userInDb = []
+    expect(component.validEmail).toBeFalse();
+  });
+
+  it('should evaluate valid email to false', () => { 
+    component.validEmail = false;
+    component.validFullName = false;
+    component.validPassword = false;
+    component.userInDb = [{email: '', password: ''}]
+    component.validateEmailAndPassword()
+    expect(component.validEmail).toBeFalse();
+  })
 });

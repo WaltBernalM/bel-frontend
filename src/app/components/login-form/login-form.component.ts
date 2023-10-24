@@ -13,6 +13,7 @@ export class LoginFormComponent implements OnInit {
   @Input() user: User = { email: '', password: '' };
   public validPassword: boolean = true;
   public validEmail: boolean = true;
+  public userInDb: User[] = [];
 
   public ngOnInit(): void {
     this.getLoginData();
@@ -20,20 +21,23 @@ export class LoginFormComponent implements OnInit {
 
   public onSubmit(event: Event): void {
     event.preventDefault(); // Prevent the default form submission behavior
-
     this.validateEmail();
     this.validatePassword();
-    const userInDb = this.users.filter(
+    this.userInDb = this.users.filter(
       (user) => user.email === this.user.email
     );
+    this.validateEmailAndPassword()
+  }
+  public validateEmailAndPassword(): void { 
     if (this.validEmail && this.validPassword) {
-      if (userInDb.length > 0) {
+      if (this.userInDb.length > 0) {
         console.log('successfull login');
       } else {
         this.validEmail = false;
       }
     }
   }
+  
   public validateEmail(): void {
     const email = this.user.email;
     this.validEmail = email.includes('@') && email.includes('.com');
@@ -44,11 +48,7 @@ export class LoginFormComponent implements OnInit {
     const password = this.user?.password;
     this.validPassword = passwordRegex.test(password);
   }
-  public showFormControls(form: any): boolean {
-    return form && form.controls.name && form.controls.name.value; // Dr. IQ
-  }
-
-  private users: User[] = [];
+  public users: User[] = [];
   public getLoginData(): void {
     this.users = this.loginService.getUsers();
   }

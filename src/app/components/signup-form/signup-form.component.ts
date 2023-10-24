@@ -14,6 +14,7 @@ export class SignupFormComponent implements OnInit {
   public validPassword: boolean = true;
   public validEmail: boolean = true;
   public validFullName: boolean = true;
+  public userInDb: User[] = [];
 
   public ngOnInit(): void {
     this.getLoginData();
@@ -25,19 +26,27 @@ export class SignupFormComponent implements OnInit {
     this.validateEmail();
     this.validatePassword();
     this.validateFullName();
-    const userInDb = this.users.filter(
+    this.userInDb = this.users.filter(
       (user) => user.email === this.user.email
     );
-    if (this.validEmail && this.validPassword && this.validFullName) {
-      if (userInDb.length > 0) {
-        this.validEmail = false;
-      } else {
-        console.log('successfull signup');
-      }
+    this.validateEmailAndPassword();
+  }
+  public validateEmailAndPassword(): void { 
+    if (this.checkEmailPasswordFullName() ) {
+      this.validEmail = false;
     } else {
-      window.alert('An error occurred');
+      console.log('successfull signup');
     }
   }
+  private checkEmailPasswordFullName(): boolean { 
+    return (
+      this.validEmail &&
+      this.validPassword &&
+      this.validFullName &&
+      this.userInDb.length > 0
+    );
+  }
+
   public validateFullName(): void { 
     const fullName = this.user.fullName;
     this.validFullName = Boolean(fullName?.includes(' ') && fullName.length > 7);
@@ -52,10 +61,6 @@ export class SignupFormComponent implements OnInit {
     const password = this.user?.password;
     this.validPassword = passwordRegex.test(password) && (this.user.password === this.user.passwordValidation);
   }
-  public showFormControls(form: any): boolean {
-    return form && form.controls.name && form.controls.name.value; // Dr. IQ
-  }
-
   private users: User[] = [];
   public getLoginData(): void {
     this.users = this.loginService.getUsers();
