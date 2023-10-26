@@ -12,6 +12,7 @@ export class NavbarComponent {
   public isLogin: boolean = true;
   public isSignup: boolean = false;
 
+  // Returns to parent component the option value (login or signup)
   public selectOption(option: string): void {
     this.optionSelectedEvent.emit(String(option));
   }

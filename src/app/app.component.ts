@@ -6,10 +6,10 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'bwl-frontend';
-  isLoginComponentVisible: boolean = true;
+  public title: string = 'bwl-frontend';
+  public isLoginComponentVisible: boolean = true;
   
-  toggleComponentVisibility(option: string): void {
+  public toggleComponentVisibility(option: string): void {
     this.evaluateOption(option);
   }
   private evaluateOption(option: string): void {
