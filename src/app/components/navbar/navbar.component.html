@@ -1,17 +1,37 @@
-<!DOCTYPE html>
-<nav>
+<nav *ngIf="!userIslogged">
   <a 
-  href="/login"
-  [ngClass]="{'selected': isLogin}" 
-  (click)="updateSelection($event,'login')"
-  >
-    Log in
-  </a>
-  <a
-  href="/signup" 
-  [ngClass]="{'selected': isSignup}" 
-  (click)="updateSelection($event,'signup')"
-  >
-    Sign up
-  </a>
+  routerLink="/login" 
+  (click)="setSelected('login')"
+  [ngClass]="{'selected': selected === 'login'}"
+  >Login</a>
+  <a 
+  routerLink="/signup"
+  (click)="setSelected('signup')"
+  [ngClass]="{'selected': selected === 'signup'}"
+  >Signup</a>
+</nav>
+
+<nav *ngIf="userIslogged" class="login-nav">
+  <div>
+    <a 
+    routerLink="/dashboard"
+    (click)="setSelected('dashboard')"
+    [ngClass]="{'selected': selected === 'dashboard'}"
+    >Dashboard</a>
+    
+    <a 
+    routerLink="/users"
+    (click)="setSelected('users')"
+    [ngClass]="{'selected': selected === 'users'}"
+    >Usuarios</a>
+  </div>
+
+  <div class="user-name">
+    <div class="initials">
+      {{usernameInitials}} 
+    </div>
+    <div class="name">
+      {{userName}}
+    </div>
+  </div>
 </nav>

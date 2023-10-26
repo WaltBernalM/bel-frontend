@@ -1,18 +1,11 @@
 <!DOCTYPE html>
+
 <div class="content" style="display: none;">
-  <span>{{ 'bwl-frontend app is running!' }}</span>
+  <span>{{ 'bwl-test app is running!' }}</span>
 </div>
-<div>
-  <!-- <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a> -->
-  <app-navbar 
-  [isLoginComponentVisible]="isLoginComponentVisible"
-  (optionSelectedEvent)="toggleComponentVisibility($event)"
-  ></app-navbar>
+<app-navbar 
+[currentPage]="currentPage"
+>
+</app-navbar>
 
-  <app-sign-page 
-  [isLoginComponentVisible]="isLoginComponentVisible"
-  ></app-sign-page>
-</div>
-
-<!-- <router-outlet></router-outlet> -->
+<router-outlet></router-outlet>

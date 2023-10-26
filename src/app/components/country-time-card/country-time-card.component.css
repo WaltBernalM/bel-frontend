@@ -1,0 +1,48 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  padding: 16px; 
+  margin: 10px;
+  padding-bottom: 7px;
+  width: 280px;
+  height: 120px;
+}
+
+.card-title {
+  border-bottom: 1px solid rgb(13, 172, 255);
+  margin-bottom: 8px;
+}
+.card-title div {
+  padding-bottom: 10px;
+  color: gray;
+  font-size: 0.9rem;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.card-text {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 45px;
+}
+
+.time {
+  font-size: 2.3rem;
+}
+
+.large-icon {
+  font-size: 4.5em; /* Adjust the font size to make the icon larger */
+}

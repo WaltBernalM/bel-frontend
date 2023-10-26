@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<div id="dashboard">
+  <div id="content">
+    <app-country-weather-card 
+    [temperature]="temperature" 
+    [condition]="condition"
+    [iconUrl]="iconUrl"
+    ></app-country-weather-card>
+
+    <app-country-card
+    [country]="country"
+    >
+    </app-country-card>
+
+    <app-tasks-card></app-tasks-card>
+
+    <app-country-time-card
+    [timeZone]="timeZone">
+    </app-country-time-card>
+    
+    <app-tasks-card [finished]="true"></app-tasks-card>
+    
+    <app-country-timezone-card
+    [countryTimeZones]="countryTimeZones"
+    (setNewTimeZone)="updateTimeZone($event)"
+    >
+    </app-country-timezone-card>
+  </div>
+  <div id="country-list">
+    <app-country-list
+    [countryList]="countryList"
+    (setNewCountry)="updateCountry($event)"
+    >
+    </app-country-list>
+  </div>
+</div>

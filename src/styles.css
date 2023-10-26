@@ -3,3 +3,12 @@ body {
   margin: 0;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.card {
+  width: 90% !important;
+  height: 80% !important;
+}
+
+.card-title div {
+  font-size: 1rem !important;
+}

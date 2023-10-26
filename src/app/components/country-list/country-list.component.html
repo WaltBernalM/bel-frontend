@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<div class="card-list">
+  <div class="card-title">
+    <div>Paises disponibles</div>
+  </div>
+  <div 
+  class="card-body"
+  *ngFor="let country of countryList"
+  (click)="setCountry(country.name)"
+  >
+    <div class="card-img">
+      <span class="large-icon">{{ country.flag }}</span>
+    </div>
+    <div class="card-text">
+      <span>{{ country.name }}</span>
+    </div>
+  </div>
+</div>

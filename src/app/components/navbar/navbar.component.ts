@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { AuthServiceService } from '../../services/auth-service.service'
+import { Subscription } from 'rxjs'; // Import Subscription from the 'rxjs' library
 
 @Component({
   selector: 'app-navbar',
@@ -6,27 +8,39 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  @Input() isLoginComponentVisible!: boolean;
-  @Output() optionSelectedEvent = new EventEmitter<string>();
+  @Input() currentPage?: string;
 
-  public isLogin: boolean = true;
-  public isSignup: boolean = false;
+  public selected: string = 'login';
+  public userIslogged: boolean = false;
+  private authSubscription: Subscription;
+  public userName: string = '';
+  public usernameInitials: string = '';
 
-  // Returns to parent component the option value (login or signup)
-  public selectOption(option: string): void {
-    this.optionSelectedEvent.emit(String(option));
+  constructor(private authService: AuthServiceService) {
+    this.authSubscription = this.authService.isAuthenticated.subscribe(
+      (value) => {
+        this.userIslogged = value;
+        if (this.userIslogged) { 
+          this.selected = 'dashboard'; // short fix to select dashboard when logged in
+          this.authService.userInSession.subscribe({
+            next: (response) => {
+              this.userName = String(response.fullName)
+              this.usernameInitials = `${this.userName[0]}${this.userName[this.userName.indexOf(' ')+1]}`
+              
+            },
+            error: (error) => {},
+          });
+        }
+      }
+    );
   }
 
-  public updateSelection(event: Event, option: string): void {
-    event.preventDefault();
-    this.selectOption(option);
-    if (option === 'login') {
-      this.isLogin = true;
-      this.isSignup = false;
-    } else if (option === 'signup') {
-      this.isLogin = false;
-      this.isSignup = true;
-    }
-    this.selectOption(option);
+  // Unsubscribe to avoid memory leaks when the component is destroyed
+  ngOnDestroy() {
+    this.authSubscription.unsubscribe();
+  }
+  public setSelected(option: string) {
+    this.selected = option;
+    // console.log('userName: ', this.authService.userName, this.userName)
   }
 }

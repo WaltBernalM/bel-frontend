@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../user';
-import { LoginServiceService } from '../../services/login-service.service';
+import { AuthServiceService } from '../../services/auth-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -8,37 +9,55 @@ import { LoginServiceService } from '../../services/login-service.service';
   styleUrls: ['./signup-form.component.css'],
 })
 export class SignupFormComponent implements OnInit {
-  constructor(private loginService: LoginServiceService) {}
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router
+  ) {}
 
-  @Input() user: User = { email: '', password: '', fullName: '', passwordValidation: ''};
+  @Input() user: User = {
+    email: '',
+    password: '',
+    fullName: '',
+    passwordValidation: '',
+  };
   public validPassword: boolean = true;
   public validEmail: boolean = true;
   public validFullName: boolean = true;
   public userInDb: User[] = [];
+  private users: User[] = [];
 
   public ngOnInit(): void {
     this.getLoginData();
   }
 
+  public getLoginData(): void {
+    this.users = this.authService.getUsers();
+  }
+
   public onSubmit(event: Event): void {
     event.preventDefault(); // Prevent the default form submission behavior
-
     this.validateEmail();
     this.validatePassword();
     this.validateFullName();
-    this.userInDb = this.users.filter(
-      (user) => user.email === this.user.email
-    );
+    this.userInDb = this.users.filter((user) => user.email === this.user.email);
     this.validateEmailAndPassword();
   }
-  public validateEmailAndPassword(): void { 
-    if (this.checkEmailPasswordFullName() ) {
+  public validateEmailAndPassword(): void {
+    if (this.signup()) {
       this.validEmail = false;
-    } else {
-      console.log('successfull signup');
+    } else if (this.user.email && this.user.password && this.user.fullName!) {
+      this.authService.postSignup(
+        this.user.email,
+        this.user.password,
+        this.user.fullName!
+      );
+      alert("You have created a new user")
+      // this.router.navigate(['/signup']);
     }
   }
-  private checkEmailPasswordFullName(): boolean { 
+
+  // validates that all are valid options and that the user is not taken already
+  public signup(): boolean {
     return (
       this.validEmail &&
       this.validPassword &&
@@ -47,9 +66,11 @@ export class SignupFormComponent implements OnInit {
     );
   }
 
-  public validateFullName(): void { 
+  public validateFullName(): void {
     const fullName = this.user.fullName;
-    this.validFullName = Boolean(fullName?.includes(' ') && fullName.length > 7);
+    this.validFullName = Boolean(
+      fullName?.includes(' ') && fullName.length > 7
+    );
   }
   public validateEmail(): void {
     const email = this.user.email;
@@ -59,10 +80,8 @@ export class SignupFormComponent implements OnInit {
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#*]{7,}$/;
     const password = this.user?.password;
-    this.validPassword = passwordRegex.test(password) && (this.user.password === this.user.passwordValidation);
-  }
-  private users: User[] = [];
-  public getLoginData(): void {
-    this.users = this.loginService.getUsers();
+    this.validPassword =
+      passwordRegex.test(password) &&
+      this.user.password === this.user.passwordValidation;
   }
 }

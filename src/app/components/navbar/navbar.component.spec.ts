@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -8,7 +11,9 @@ describe('NavbarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NavbarComponent]
+      declarations: [NavbarComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [FormsModule, RouterTestingModule],
     });
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
@@ -19,27 +24,9 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should emit the option selected event', () => {
-    const option = 'TestOption';
-
-    /* spyOn is used to create mock or spy functions for tracking calls and 
-    behavior of methods or functions */
-    const emitSpy = spyOn(component.optionSelectedEvent, 'emit');
-    component.selectOption(option);
-    expect(emitSpy).toHaveBeenCalledWith(option);
+  it('should set input as selected', () => {
+    const selected = 'input'
+    component.setSelected(selected)
+    expect(component.selected === 'input').toBeTrue()
   })
-
-  it('should evaluate isLogin to true', () => {
-    const mockEvent = new Event('');
-    const option = 'login';
-    component.updateSelection(mockEvent, option);
-    expect(component.isLogin).toBeTrue();
-  })
-
-  it('should evaluate isSignup to false', () => {
-    const mockEvent = new Event('');
-    const option = 'signup';
-    component.updateSelection(mockEvent, option);
-    expect(component.isSignup).toBeTrue();
-  });
 });

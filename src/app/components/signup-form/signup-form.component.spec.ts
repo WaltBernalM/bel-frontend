@@ -13,7 +13,7 @@ describe('SignupFormComponent', () => {
     TestBed.configureTestingModule({
       declarations: [SignupFormComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [FormsModule, RouterTestingModule]
+      imports: [FormsModule, RouterTestingModule],
     });
     fixture = TestBed.createComponent(SignupFormComponent);
     component = fixture.componentInstance;
@@ -24,19 +24,30 @@ describe('SignupFormComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should evaluate to truthy', () => {
+  it('should evaluate to false if no data input on submit', () => {
     const mockEvent = new Event('');
     component.onSubmit(mockEvent);
-    component.userInDb = []
+    component.userInDb = [];
     expect(component.validEmail).toBeFalse();
   });
 
-  it('should evaluate valid email to false', () => { 
+  it('should evaluate valid email to false', () => {
     component.validEmail = false;
     component.validFullName = false;
     component.validPassword = false;
-    component.userInDb = [{email: '', password: ''}]
-    component.validateEmailAndPassword()
+    component.userInDb = [{ email: '', password: '' }];
+    component.validateEmailAndPassword();
     expect(component.validEmail).toBeFalse();
+  });
+
+  it('should catch if valid email but not the rest', () => {
+    expect(component.signup()).toBeFalse()
   })
+
+  it('should catch if valid email but not the rest and  set validEmail to false', () => {
+    component.validEmail = false;
+    component.signup();
+    expect(component.validEmail).toBeFalse();
+  });
+
 });

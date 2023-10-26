@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SignPageComponent } from './sign-page.component';
+import { LoginPageComponent } from './login-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 describe('LoginPageComponent', () => {
-  let component: SignPageComponent;
-  let fixture: ComponentFixture<SignPageComponent>;
+  let component: LoginPageComponent;
+  let fixture: ComponentFixture<LoginPageComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SignPageComponent],
+      declarations: [LoginPageComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [FormsModule, RouterTestingModule],
     });
-    fixture = TestBed.createComponent(SignPageComponent);
+    fixture = TestBed.createComponent(LoginPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

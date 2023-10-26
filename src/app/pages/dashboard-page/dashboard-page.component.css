@@ -1,0 +1,20 @@
+#dashboard {
+  display: grid;
+  grid-template-columns: 1fr 22%; /* 80% for content, 20% for country-list */
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+#content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-template-rows: repeat(3, 1fr); /* 3 rows */
+  gap: 12px; /* Adjust the gap as needed */
+  padding: 10px;
+  overflow: auto; /* Add scroll if content exceeds space */
+}
+
+#country-list {
+  padding: 10px;
+  padding-left: 0;
+  overflow: auto; /* Add scroll if content exceeds space */
+}

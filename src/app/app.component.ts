@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthServiceService } from './services/auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -6,17 +7,11 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  public title: string = 'bwl-frontend';
-  public isLoginComponentVisible: boolean = true;
-  
-  public toggleComponentVisibility(option: string): void {
-    this.evaluateOption(option);
-  }
-  private evaluateOption(option: string): void {
-    if (option === 'login') {
-      this.isLoginComponentVisible = true;
-    } else {
-      this.isLoginComponentVisible = false;
-    }
+  constructor(private authService: AuthServiceService) {}
+  public title: string = 'bwl-test';
+  public currentPage: string = 'signup';
+  public updateCurrentPage(page: string): void { 
+    this.currentPage = page;
+    // console.log(this.currentPage)
   }
 }

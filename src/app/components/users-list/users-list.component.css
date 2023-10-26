@@ -1,0 +1,48 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.card-list {
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  padding: 16px; 
+  margin: 10px;
+  padding-bottom: 7px;
+  margin-top: 40px;
+  width: 90vw;
+  height: 80vh;
+}
+
+.card-title {
+  border-bottom: 1px solid rgb(13, 172, 255);
+  margin-bottom: 8px;
+  padding: 10px 0;
+}
+.card-title div {
+  padding-bottom: 10px;
+  color: gray;
+  font-size: 0.9rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+thead td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+th, td {
+  width: 28.33%; /* Three equal-width columns */
+}
+
+td {
+  padding: 20px 0;
+}
+
+.equal-width-table {
+  width: 100%;
+  
+}

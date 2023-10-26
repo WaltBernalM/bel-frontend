@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<div class="card-list">
+  <div class="card-title">
+    <div>Lista de usuarios del sistema</div>
+  </div>
+  <div class="card-body">
+    <table>
+      <thead>
+        <tr>
+          <td>Nombre</td>
+          <td>Correo electronico</td>
+          <td>Fecha de registro</td>
+          <td>Ultimo login</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of allUsers">
+          <td>{{user.fullName}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.creationDate}}</td>
+          <td>{{user.lastLogin}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

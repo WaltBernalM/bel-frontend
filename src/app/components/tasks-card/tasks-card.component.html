@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<div class="card">
+  <div class="card-title">
+    <div *ngIf="finished">Tareas completadas</div>
+    <div *ngIf="!finished">Tareas pendientes</div>
+  </div>
+  <div 
+  class="card-body"
+  *ngFor="let task of tasks"
+  >
+    <div class="card-text">
+      <span>{{ task.description }}</span>
+    </div>
+  </div>
+</div>

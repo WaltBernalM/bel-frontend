@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<div class="card weather-card">
+  <div class="card-title">
+    <div>Hora</div>
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <div class="time">{{ currentTime$ | async | date: 'mediumTime' }}</div>
+    </div>
+  </div>
+</div>
